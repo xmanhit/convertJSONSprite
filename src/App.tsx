@@ -17,17 +17,20 @@ function App() {
         if (e.target?.result) {
           const result = e.target.result.toString()
           const json = JSON.parse(result)
+          const filename = Object.keys(json.mc)[0];
+
+          console.log(json);
+          
           const subTextures = Object.entries(json.res).map(([name, {x, y, w, h}]: any) => ({
             name,
             width: w,
             height: h,
-            frameX: json.mc.fumojh.frames.find(({res}: any) => res === name).x,
-            frameY: json.mc.fumojh.frames.find(({res}: any) => res === name).y,
+            frameX: json.mc[filename].frames.find(({res}: any) => res == name).x,
+            frameY: json.mc[filename].frames.find(({res}: any) => res == name).y,
             x,
             y
           }));
           
-          const filename = Object.keys(json.mc)[0];
           
           const resultJSON = {
             SubTexture: subTextures,
