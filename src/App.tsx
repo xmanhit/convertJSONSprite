@@ -17,10 +17,7 @@ function App() {
         if (e.target?.result) {
           const result = e.target.result.toString()
           const json = JSON.parse(result)
-          const filename = Object.keys(json.mc)[0];
-
-          console.log(json);
-          
+          const filename = Object.keys(json.mc)[0];          
           const subTextures = Object.entries(json.res).map(([name, {x, y, w, h}]: any) => ({
             name,
             width: w,
