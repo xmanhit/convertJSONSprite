@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState, useEffect } from "react";
+import { ChangeEvent, useRef, useState, useEffect } from "react";
 import ReactJson from "react-json-view";
 
 import "./App.css";
