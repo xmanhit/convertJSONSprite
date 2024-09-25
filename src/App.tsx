@@ -63,25 +63,6 @@ function App() {
     }
   };
 
-  const handleFrameRateChange = (converter: number, change: number) => {
-    if (converter === 1) {
-      setFrameRate1((prev) => Math.max(1, prev + change));
-      if (fileProcessed) {
-        const updatedJSON = JSON.parse(fileProcessed);
-        updatedJSON.frameRate = frameRate1 + change;
-        setFileProcessed(JSON.stringify(updatedJSON, null, 2));
-      }
-    } else {
-      setFrameRate2((prev) => Math.max(1, prev + change));
-      if (fileProcessed2) {
-        const updatedJSON = JSON.parse(fileProcessed2);
-        const filename = Object.keys(updatedJSON.mc)[0];
-        updatedJSON.mc[filename].frameRate = frameRate2 + change;
-        setFileProcessed2(JSON.stringify(updatedJSON, null, 2));
-      }
-    }
-  };
-
   const resetFileInput = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
@@ -165,6 +146,36 @@ function App() {
     }
   };
 
+  const handleFrameRateChange = (converter: number, newRate: number) => {
+    const updatedRate = Math.max(1, newRate);
+    if (converter === 1) {
+      setFrameRate1(updatedRate);
+      if (fileProcessed) {
+        const updatedJSON = JSON.parse(fileProcessed);
+        updatedJSON.frameRate = updatedRate;
+        setFileProcessed(JSON.stringify(updatedJSON, null, 2));
+      }
+    } else {
+      setFrameRate2(updatedRate);
+      if (fileProcessed2) {
+        const updatedJSON = JSON.parse(fileProcessed2);
+        const filename = Object.keys(updatedJSON.mc)[0];
+        updatedJSON.mc[filename].frameRate = updatedRate;
+        setFileProcessed2(JSON.stringify(updatedJSON, null, 2));
+      }
+    }
+  };
+
+  const handleFrameRateInputChange = (
+    converter: number,
+    e: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const newRate = parseInt(e.target.value, 10);
+    if (!isNaN(newRate)) {
+      handleFrameRateChange(converter, newRate);
+    }
+  };
+
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark-mode");
@@ -194,9 +205,18 @@ function App() {
             onChange={handleFileChange}
           />
           <div className="frame-rate-control">
-            <button onClick={() => handleFrameRateChange(1, -1)}>-</button>
-            <span>Frame Rate: {frameRate1}</span>
-            <button onClick={() => handleFrameRateChange(1, 1)}>+</button>
+            <button onClick={() => handleFrameRateChange(1, frameRate1 - 1)}>
+              -
+            </button>
+            <input
+              type="number"
+              value={frameRate1}
+              onChange={(e) => handleFrameRateInputChange(1, e)}
+              min="1"
+            />
+            <button onClick={() => handleFrameRateChange(1, frameRate1 + 1)}>
+              +
+            </button>
           </div>
 
           <button type="button" onClick={resetFileInput}>
@@ -248,9 +268,18 @@ function App() {
             onChange={handleFileChange2}
           />
           <div className="frame-rate-control">
-            <button onClick={() => handleFrameRateChange(2, -1)}>-</button>
-            <span>Frame Rate: {frameRate2}</span>
-            <button onClick={() => handleFrameRateChange(2, 1)}>+</button>
+            <button onClick={() => handleFrameRateChange(2, frameRate2 - 1)}>
+              -
+            </button>
+            <input
+              type="number"
+              value={frameRate2}
+              onChange={(e) => handleFrameRateInputChange(2, e)}
+              min="1"
+            />
+            <button onClick={() => handleFrameRateChange(2, frameRate2 + 1)}>
+              +
+            </button>
           </div>
 
           <button type="button" onClick={resetFileInput2}>
