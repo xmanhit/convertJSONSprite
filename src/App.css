@@ -190,21 +190,39 @@ button:focus,button:focus-visible {
   background-color: var(--button-bg);
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px;
   margin: 0 5px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .frame-rate-control button:hover {
   background-color: var(--button-hover);
 }
 
-.frame-rate-control span {
-  margin: 0 10px;
+.frame-rate-control input {
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
+.frame-rate-control input::-webkit-inner-spin-button,
+.frame-rate-control input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.frame-rate-control input[type=number] {
+  -moz-appearance: textfield;
+}
 
 @media (prefers-color-scheme: light) {
     :root {
