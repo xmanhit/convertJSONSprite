@@ -82,11 +82,11 @@ function App() {
                 if (e.target?.result) {
                     const result = e.target.result.toString()
                     const json = JSON.parse(result)
-                    const filename = Object.keys(json.mc)[0];
+                    const filename2 = Object.keys(json.mc)[0];
 
                     const resultJSON = {
                         mc: {
-                            [fileName]: {
+                            [filename2]: {
                                 frames: [],
                                 frameRate: 3 // Assuming frameRate is 3 based on "frame": 3 in bw2.json
                             }
@@ -96,7 +96,7 @@ function App() {
                     
                     json.frames.forEach((frame, index) => {
                         // Add frame data to mc.uititle00053_000.frames
-                        resultJSON.mc.[fileName].frames.push({
+                        resultJSON.mc.[filename2].frames.push({
                           res: index.toString().padStart(2, '0'),
                           y: -frame.oy,
                           x: -frame.ox
@@ -113,7 +113,7 @@ function App() {
 
                     setFile2(result);
                     setFileProcessed2(JSON.stringify(resultJSON, null, 2))
-                    setFileName2(filename)
+                    setFileName2(filename2)
                 }
             };
         };
