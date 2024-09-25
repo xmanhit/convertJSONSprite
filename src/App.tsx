@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState, useEffect } from "react";
 import ReactJson from "react-json-view";
 
 import "./App.css";
@@ -10,6 +10,7 @@ interface DownloadFileProps {
 }
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<string>("");
   const [fileProcessed, setFileProcessed] = useState<string>("");
@@ -141,88 +142,112 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-  <main>
-    <div className="converter-section">
-      <h1>JSON to TexturePacker Converter</h1>
-      <div className="file-input-group">
-        <label htmlFor="newFile">Upload JSON file:</label>
-        <input
-          ref={inputRef}
-          type="file"
-          id="newFile"
-          onChange={handleFileChange}
-        />
-        <button type="button" onClick={resetFileInput}>
-          Clear
-        </button>
-        <button
-          disabled={!fileProcessed}
-          type="button"
-          onClick={() =>
-            downloadFile({
-              data: fileProcessed,
-              fileName,
-              fileType: "text/json",
-            })
-          }
-        >
-          Download
-        </button>
+    <main>
+      <button className="theme-toggle" onClick={toggleDarkMode}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+
+      <div className="converter-section">
+        <h1>JSON to TexturePacker Converter</h1>
+        <div className="file-input-group">
+          <label htmlFor="newFile">Upload JSON file:</label>
+          <input
+            ref={inputRef}
+            type="file"
+            id="newFile"
+            onChange={handleFileChange}
+          />
+          <button type="button" onClick={resetFileInput}>
+            Clear
+          </button>
+          <button
+            disabled={!fileProcessed}
+            type="button"
+            onClick={() =>
+              downloadFile({
+                data: fileProcessed,
+                fileName,
+                fileType: "text/json",
+              })
+            }
+          >
+            Download
+          </button>
+        </div>
+
+        <div className="json-view-container">
+          <div className="json-view">
+            {file && (
+              <ReactJson
+                src={JSON.parse(file)}
+                theme={darkMode ? "twilight" : "rjv-default"}
+              />
+            )}
+          </div>
+          <div className="json-view">
+            {fileProcessed && (
+              <ReactJson
+                src={JSON.parse(fileProcessed)}
+                theme={darkMode ? "twilight" : "rjv-default"}
+              />
+            )}
+          </div>
+        </div>
       </div>
 
-      <div className="json-view-container">
-        <div className="json-view">
-          {file && <ReactJson src={JSON.parse(file)} theme="monokai" />}
+      <div className="converter-section">
+        <h1>JSON to TexturePacker Converter 2</h1>
+        <div className="file-input-group">
+          <label htmlFor="newFile2">Upload JSON file:</label>
+          <input
+            ref={inputRef2}
+            type="file"
+            id="newFile2"
+            onChange={handleFileChange2}
+          />
+          <button type="button" onClick={resetFileInput2}>
+            Clear
+          </button>
+          <button
+            disabled={!fileProcessed2}
+            type="button"
+            onClick={() =>
+              downloadFile({
+                data: fileProcessed2,
+                fileName: fileName2,
+                fileType: "text/json",
+              })
+            }
+          >
+            Download
+          </button>
         </div>
-        <div className="json-view">
-          {fileProcessed && (
-            <ReactJson src={JSON.parse(fileProcessed)} theme="monokai" />
-          )}
-        </div>
-      </div>
-    </div>
 
-    <div className="converter-section">
-      <h1>JSON to TexturePacker Converter 2</h1>
-      <div className="file-input-group">
-        <label htmlFor="newFile2">Upload JSON file:</label>
-        <input
-          ref={inputRef2}
-          type="file"
-          id="newFile2"
-          onChange={handleFileChange2}
-        />
-        <button type="button" onClick={resetFileInput2}>
-          Clear
-        </button>
-        <button
-          disabled={!fileProcessed2}
-          type="button"
-          onClick={() =>
-            downloadFile({
-              data: fileProcessed2,
-              fileName: fileName2,
-              fileType: "text/json",
-            })
-          }
-        >
-          Download
-        </button>
-      </div>
-
-      <div className="json-view-container">
-        <div className="json-view">
-          {file2 && <ReactJson src={JSON.parse(file2)} theme="monokai" />}
-        </div>
-        <div className="json-view">
-          {fileProcessed2 && (
-            <ReactJson src={JSON.parse(fileProcessed2)} theme="monokai" />
-          )}
+        <div className="json-view-container">
+          <div className="json-view">
+            {file2 && <ReactJson src={JSON.parse(file2)} theme="monokai" />}
+          </div>
+          <div className="json-view">
+            {fileProcessed2 && (
+              <ReactJson src={JSON.parse(fileProcessed2)} theme="monokai" />
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
   );
 }
 
