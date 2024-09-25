@@ -11,6 +11,9 @@ interface DownloadFileProps {
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [frameRate1, setFrameRate1] = useState(12);
+  const [frameRate2, setFrameRate2] = useState(12);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<string>("");
   const [fileProcessed, setFileProcessed] = useState<string>("");
@@ -50,12 +53,32 @@ function App() {
             SubTexture: subTextures,
             imagePath: filename + ".png",
             name: filename,
+            frameRate: frameRate1,
           };
           setFile(result);
           setFileProcessed(JSON.stringify(resultJSON, null, 2));
           setFileName(filename);
         }
       };
+    }
+  };
+
+  const handleFrameRateChange = (converter: number, change: number) => {
+    if (converter === 1) {
+      setFrameRate1((prev) => Math.max(1, prev + change));
+      if (fileProcessed) {
+        const updatedJSON = JSON.parse(fileProcessed);
+        updatedJSON.frameRate = frameRate1 + change;
+        setFileProcessed(JSON.stringify(updatedJSON, null, 2));
+      }
+    } else {
+      setFrameRate2((prev) => Math.max(1, prev + change));
+      if (fileProcessed2) {
+        const updatedJSON = JSON.parse(fileProcessed2);
+        const filename = Object.keys(updatedJSON.mc)[0];
+        updatedJSON.mc[filename].frameRate = frameRate2 + change;
+        setFileProcessed2(JSON.stringify(updatedJSON, null, 2));
+      }
     }
   };
 
@@ -105,7 +128,7 @@ function App() {
             mc: {
               [filename2]: {
                 frames: [],
-                frameRate: 3,
+                frameRate: frameRate2,
               },
             },
             res: {},
@@ -170,6 +193,12 @@ function App() {
             id="newFile"
             onChange={handleFileChange}
           />
+          <div className="frame-rate-control">
+            <button onClick={() => handleFrameRateChange(1, -1)}>-</button>
+            <span>Frame Rate: {frameRate1}</span>
+            <button onClick={() => handleFrameRateChange(1, 1)}>+</button>
+          </div>
+
           <button type="button" onClick={resetFileInput}>
             Clear
           </button>
@@ -218,6 +247,12 @@ function App() {
             id="newFile2"
             onChange={handleFileChange2}
           />
+          <div className="frame-rate-control">
+            <button onClick={() => handleFrameRateChange(2, -1)}>-</button>
+            <span>Frame Rate: {frameRate2}</span>
+            <button onClick={() => handleFrameRateChange(2, 1)}>+</button>
+          </div>
+
           <button type="button" onClick={resetFileInput2}>
             Clear
           </button>
