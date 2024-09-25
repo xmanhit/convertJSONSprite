@@ -180,6 +180,32 @@ button:focus,button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color
 }
 
+.frame-rate-control {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.frame-rate-control button {
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.frame-rate-control button:hover {
+  background-color: var(--button-hover);
+}
+
+.frame-rate-control span {
+  margin: 0 10px;
+}
+
+
 @media (prefers-color-scheme: light) {
     :root {
         color:#213547;
