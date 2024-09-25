@@ -21,8 +21,8 @@ function App() {
             fileReader.readAsText(e.target.files[0], "UTF-8");
             fileReader.onload = e => {
                 if (e.target?.result) {
-                    const result = e.target.result.toString()
-                    const json = JSON.parse(result)
+                    const result = e.target.result.toString();
+                    const json = JSON.parse(result);
                     const filename = Object.keys(json.mc)[0];
                     const subTextures = Object.entries(json.res).map(([name, { x, y, w, h }]: any) => ({
                         name,
@@ -80,9 +80,9 @@ function App() {
             fileReader.readAsText(e.target.files[0], "UTF-8");
             fileReader.onload = e => {
                 if (e.target?.result) {
-                    const result = e.target.result.toString()
-                    const json = JSON.parse(result)
-                    const filename2 = Object.keys(json.mc)[0];
+                    const result = e.target.result.toString();
+                    const json = JSON.parse(result);
+                    const filename2 = event.target.files[0].name;
 
                     const resultJSON = {
                         mc: {
