@@ -82,7 +82,7 @@ function App() {
                 if (e.target?.result) {
                     const result = e.target.result.toString();
                     const json = JSON.parse(result);
-                    const filename2 = event.target.files[0].name;
+                    const filename2 = e.target.files[0].name;
 
                     const resultJSON = {
                         mc: {
