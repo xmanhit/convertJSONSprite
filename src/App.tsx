@@ -96,14 +96,14 @@ function App() {
                     
                     json.frames.forEach((frame, index) => {
                         // Add frame data to mc.uititle00053_000.frames
-                        result.mc.[fileName].frames.push({
+                        resultJSON.mc.[fileName].frames.push({
                           res: index.toString().padStart(2, '0'),
                           y: -frame.oy,
                           x: -frame.ox
                         });
                     
                         // Add resource data to res
-                        result.res[index.toString().padStart(2, '0')] = {
+                        resultJSON.res[index.toString().padStart(2, '0')] = {
                           h: frame.h,
                           y: frame.y,
                           w: frame.w,
