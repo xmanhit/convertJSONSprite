@@ -193,7 +193,7 @@ function App() {
             {file && (
               <ReactJson
                 src={JSON.parse(file)}
-                theme={darkMode ? "twilight" : "rjv-default"}
+                theme={darkMode ? "monokai" : "rjv-default"}
               />
             )}
           </div>
@@ -201,7 +201,7 @@ function App() {
             {fileProcessed && (
               <ReactJson
                 src={JSON.parse(fileProcessed)}
-                theme={darkMode ? "twilight" : "rjv-default"}
+                theme={darkMode ? "monokai" : "rjv-default"}
               />
             )}
           </div>
@@ -238,11 +238,19 @@ function App() {
 
         <div className="json-view-container">
           <div className="json-view">
-            {file2 && <ReactJson src={JSON.parse(file2)} theme="monokai" />}
+            {file2 && (
+              <ReactJson
+                src={JSON.parse(file2)}
+                theme={darkMode ? "monokai" : "rjv-default"}
+              />
+            )}
           </div>
           <div className="json-view">
             {fileProcessed2 && (
-              <ReactJson src={JSON.parse(fileProcessed2)} theme="monokai" />
+              <ReactJson
+                src={JSON.parse(fileProcessed2)}
+                theme={darkMode ? "monokai" : "rjv-default"}
+              />
             )}
           </div>
         </div>
