@@ -1,10 +1,35 @@
+:root {
+  --bg-color: #f4f4f4;
+  --text-color: #333;
+  --card-bg: #fff;
+  --card-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --input-border: #ddd;
+  --button-bg: #3498db;
+  --button-hover: #2980b9;
+  --button-disabled: #bdc3c7;
+  --h1-color: #2c3e50;
+}
+
+.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #f4f4f4;
+  --card-bg: #2c2c2c;
+  --card-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  --input-border: #444;
+  --button-bg: #2980b9;
+  --button-hover: #3498db;
+  --button-disabled: #5a6268;
+  --h1-color: #ecf0f1;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f4f4f4;
+  color: var(--text-color);
+  background-color: var(--bg-color);
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -14,15 +39,15 @@ main {
 }
 
 h1 {
-  color: #2c3e50;
+  color: var(--h1-color);
   text-align: center;
   margin-bottom: 30px;
 }
 
 .converter-section {
-  background-color: #fff;
+  background-color: var(--card-bg);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   padding: 20px;
   margin-bottom: 30px;
 }
@@ -41,12 +66,14 @@ label {
 input[type="file"] {
   flex-grow: 1;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
   border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
 button {
-  background-color: #3498db;
+  background-color: var(--button-bg);
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -57,11 +84,11 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: var(--button-hover);
 }
 
 button:disabled {
-  background-color: #bdc3c7;
+  background-color: var(--button-disabled);
   cursor: not-allowed;
 }
 
@@ -74,7 +101,24 @@ button:disabled {
   width: 48%;
   overflow: auto;
   max-height: 500px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
   border-radius: 4px;
   padding: 10px;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--button-hover);
 }
