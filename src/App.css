@@ -1,124 +1,196 @@
 :root {
-  --bg-color: #f4f4f4;
-  --text-color: #333;
-  --card-bg: #fff;
-  --card-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  --input-border: #ddd;
-  --button-bg: #3498db;
-  --button-hover: #2980b9;
-  --button-disabled: #bdc3c7;
-  --h1-color: #2c3e50;
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    --input-border: #ddd;
+    --button-bg: #3498db;
+    --button-hover: #2980b9;
+    --button-disabled: #bdc3c7;
+    --h1-color: #2c3e50
 }
 
 .dark-mode {
-  --bg-color: #1a1a1a;
-  --text-color: #f4f4f4;
-  --card-bg: #2c2c2c;
-  --card-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  --input-border: #444;
-  --button-bg: #2980b9;
-  --button-hover: #3498db;
-  --button-disabled: #5a6268;
-  --h1-color: #ecf0f1;
+    --bg-color: #1a1a1a;
+    --text-color: #f4f4f4;
+    --card-bg: #2c2c2c;
+    --card-shadow: 0 0 10px rgba(255, 255, 255, .1);
+    --input-border: #444;
+    --button-bg: #2980b9;
+    --button-hover: #3498db;
+    --button-disabled: #5a6268;
+    --h1-color: #ecf0f1
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: Arial,sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color .3s ease,color .3s ease
 }
 
 main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px
 }
 
 h1 {
-  color: var(--h1-color);
-  text-align: center;
-  margin-bottom: 30px;
+    color: var(--h1-color);
+    text-align: center;
+    margin-bottom: 30px
 }
 
 .converter-section {
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  padding: 20px;
-  margin-bottom: 30px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    margin-bottom: 30px
 }
 
 .file-input-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px
 }
 
 label {
-  margin-right: 10px;
-  font-weight: bold;
+    margin-right: 10px;
+    font-weight: 700
 }
 
-input[type="file"] {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-  background-color: var(--card-bg);
-  color: var(--text-color);
+input[type=file] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    color: var(--text-color)
 }
 
 button {
-  background-color: var(--button-bg);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin-left: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease
 }
 
 button:hover {
-  background-color: var(--button-hover);
+    background-color: var(--button-hover)
 }
 
 button:disabled {
-  background-color: var(--button-disabled);
-  cursor: not-allowed;
+    background-color: var(--button-disabled);
+    cursor: not-allowed
 }
 
 .json-view-container {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between
 }
 
 .json-view {
-  width: 48%;
-  overflow: auto;
-  max-height: 500px;
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-  padding: 10px;
+    width: 48%;
+    overflow: auto;
+    max-height: 500px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    padding: 10px
 }
 
 .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease
 }
 
 .theme-toggle:hover {
-  background-color: var(--button-hover);
+    background-color: var(--button-hover)
+}
+
+:root {
+    font-family: Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: #ffffffde;
+    background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit
+}
+
+a:hover {
+    color: #535bf2
+}
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: .6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color .25s
+}
+
+button:hover {
+    border-color: #646cff
+}
+
+button:focus,button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color:#213547;
+        background-color: #fff
+    }
+
+    a:hover {
+        color: #747bff
+    }
+
+    button {
+        background-color: #f9f9f9
+    }
 }
